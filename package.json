@@ -6,6 +6,11 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "cloudinary": "^1.14.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "puppeteer": "^1.19.0",
     "request": "^2.88.0"
   }
 }
