@@ -24,6 +24,7 @@
 //   exports.myJson = myJson;
 //   exports.bufferJson = bufferJson;
 //   exports.cloudinaryJson = cloudinaryJson;
+// 
 
 const jsonBody = require('./config'); 
 const puppeteer = require('puppeteer');
@@ -59,35 +60,35 @@ ejs.renderFile(__dirname + "/index.ejs", jsonBody.myJson, (err, data)=> {
             })
             await page.screenshot({path: 'screenshot.png'});
             console.log("screenshot saved");  
-            // cloudinary.v2.uploader.upload("screenshot.png", (error, result)=> { 
-            //     if(error)   console.log(error)
-            //     imageUrl = result.url;
-            //     console.log("Image URL: " + imageUrl);
-            //     console.log("Image URL created");
-            //     // &scheduled_at=1566889800
-            //     let text = "text="+jsonBody.bufferJson.text+"&now=true&media[photo]=" + imageUrl;
-            //     if(jsonBody.myJson.scheduled_at !== "")
-            //         text += "&scheduled_at=" + jsonBody.myJson.scheduled_at;
+            cloudinary.v2.uploader.upload("screenshot.png", (error, result)=> { 
+                if(error)   console.log(error)
+                imageUrl = result.url;
+                // console.log("Image URL: " + imageUrl);
+                console.log("Image URL created");
                 
-            //     jsonBody.bufferJson.profile_ids.forEach(element => {
-            //     text =  text + "&" + "profile_ids[]=" + element; 
-            //     });
+                let text = "text="+jsonBody.bufferJson.text+"&now=true&media[photo]=" + imageUrl;
+                if(jsonBody.myJson.scheduled_at !== "")
+                    text += "&scheduled_at=" + jsonBody.myJson.scheduled_at;
                 
-            //     let options = {
-            //         method: 'post',
-            //         body: text, 
-            //         url: 'https://api.bufferapp.com/1/updates/create.json?access_token='+jsonBody.bufferJson.access_token,
-            //         headers: {"Content-Type":"application/x-www-form-urlencoded"},
-            //     }
-            //     // POST call to buffer api
-            //     request(options, (err, res, body)=> {
-            //     if (err) {
-            //         console.log('Error :', err);
-            //         return
-            //     }
-            //     console.log(' Body :', body);
-            //     });
-            // });            
+                jsonBody.bufferJson.profile_ids.forEach(element => {
+                text =  text + "&" + "profile_ids[]=" + element; 
+                });
+                
+                let options = {
+                    method: 'post',
+                    body: text, 
+                    url: 'https://api.bufferapp.com/1/updates/create.json?access_token='+jsonBody.bufferJson.access_token,
+                    headers: {"Content-Type":"application/x-www-form-urlencoded"},
+                }
+                // POST call to buffer api
+                request(options, (err, res, body)=> {
+                if (err) {
+                    console.log('Error :', err);
+                    return
+                }
+                console.log(' Body :', body);
+                });
+            });            
             await browser.close();
         })();
     })
