@@ -1,9 +1,10 @@
 body{
-  width: 800px;
+  width: 600px;
 }
 
 h1{
   color: white;
+  font-size: 2rem;
   margin: 10px;
 }
 
@@ -15,12 +16,16 @@ h1{
 }
 
 img{
-  width: 800px;
-  height: 800px;
+  width: 600px;
+  height: 600px;
   z-index: -1;
   position: absolute;
 }
 
 .parent{
-  padding: 20px;  
+  padding: 40px;  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
