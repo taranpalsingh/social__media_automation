@@ -88,6 +88,7 @@ app.post('/schedule-post', (req, res, next) => {
         fs.writeFile('index.html', data, ()=>{
             console.log("created html File");
             (async () => {
+                try{
                 const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
                 const page = await browser.newPage();
                 await page.goto(__dirname + "/index.html");
@@ -129,6 +130,11 @@ app.post('/schedule-post', (req, res, next) => {
                     });
                 });            
                 await browser.close();
+                }
+                catch(error){
+                    res.status(406);
+                    return res.send(error.message);
+                }
             })();
         });
     });
