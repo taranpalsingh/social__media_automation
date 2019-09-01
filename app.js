@@ -155,7 +155,7 @@ app.get('/future-posts/:account', (req,res,next)=>{
     });
 });
 
-let server = app.listen(PORT, ()=>{
+let server = app.listen(process.env.PORT || PORT, ()=>{
     let host = server.address().address;
     let port = server.address().port;
     console.log("app listening at http://%s:%s", host,port);
