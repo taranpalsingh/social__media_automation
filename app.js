@@ -92,7 +92,6 @@ app.post('/schedule-post', (req, res, next) => {
                         ]
                     });
                     const page = await browser.newPage();
-                    // await page.goto("./index.html");
                     await page.goto(__dirname + "/index.html");
                     await page.setViewport({
                         width: 600,
@@ -101,7 +100,9 @@ app.post('/schedule-post', (req, res, next) => {
                     })
                     await page.screenshot({path: 'screenshot.png'});
                     console.log("screenshot saved");  
+                    
                     cloudinary.v2.uploader.upload("screenshot.png", (err, result)=> { 
+                        
                         if(err){
                         res.send('Error :' + err);
                         }
