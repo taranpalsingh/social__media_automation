@@ -61,10 +61,13 @@ app.use((req, res, next)=>{
     next();
 });
 
-app.post('/', (req, res, next)=> {
+app.get('/', (req, res, next)=> {
     res.send("Welcome to loopcv");
 })
 
+app.get('/test', (req, res, next)=> {
+    res.send("Welcome to loopcv test");
+})
 
 
 app.post('/schedule-post', (req, res, next) => {
@@ -72,7 +75,7 @@ app.post('/schedule-post', (req, res, next) => {
     let imageUrl = "", profile_ids = [];
     let myJson = req.body.socialPost; 
     
-    req.body.myJson.postsTo.forEach((element)=>{
+    myJson.postsTo.forEach((element)=>{
         profile_ids.push(jsonBody.bufferJson.accounts[element]);
     })
 
@@ -131,7 +134,7 @@ app.post('/schedule-post', (req, res, next) => {
     });
 });
 
-app.get('/get-future-posts/:account', (req,res,next)=>{
+app.get('/future-posts/:account', (req,res,next)=>{
 
     console.log(req.params.account);
     let profile = jsonBody.bufferJson.accounts[req.params.account];

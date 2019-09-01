@@ -9,11 +9,17 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="main.css">
 </head>
+<style>
+body{
+  font-family:<%= font_family%>;  
+}
+</style>
+<!-- <body  style="font-family:<%= backgroundImage%>"> -->
 <body>
   <img src="<%= backgroundImage%>" alt="background Image" class="img">
    <div class="parent">
     <div class="line">
-      <h1>Company Name :</h1>
+      <h1>Company :</h1>
       <h1><%= companyName%></h1>
     </div> 
     <div class="line">
