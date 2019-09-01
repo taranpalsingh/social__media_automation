@@ -1,5 +1,5 @@
 /node_modules
-/config.js
-/download.jpg
-/screenshot.png
-/index.html
+# /config.js
+# /download.jpg
+# /screenshot.png
+# /index.html
