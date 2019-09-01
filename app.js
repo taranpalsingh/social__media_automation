@@ -44,11 +44,6 @@ const request = require('request');
 let app = express();
 const PORT = 3000;
 
-
-
-// let postsTo = ["facebook", "instagram", "twitter"];
-
-
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
@@ -74,7 +69,8 @@ app.post('/schedule-post', (req, res, next) => {
 
     let imageUrl = "", profile_ids = [];
     let myJson = req.body.socialPost; 
-    
+
+    console.log(__dirname);
     myJson.postsTo.forEach((element)=>{
         profile_ids.push(jsonBody.bufferJson.accounts[element]);
     })
@@ -96,6 +92,7 @@ app.post('/schedule-post', (req, res, next) => {
                         ]
                     });
                     const page = await browser.newPage();
+                    // await page.goto("./index.html");
                     await page.goto(__dirname + "/index.html");
                     await page.setViewport({
                         width: 600,
