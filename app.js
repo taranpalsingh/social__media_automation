@@ -84,60 +84,60 @@ app.post('/schedule-post', (req, res, next) => {
         fs.writeFile('index.html', data, ()=>{
             console.log("created html File");
             (async () => {
-                try{
-                    const browser = await puppeteer.launch({
-                        args: [
-                            '--no-sandbox', 
-                            '--disable-setuid-sandbox'
-                        ]
-                    });
-                    const page = await browser.newPage();
-                    await page.goto(__dirname + "/index.html");
-                    await page.setViewport({
-                        width: 600,
-                        height: 400,
-                        deviceScaleFactor: 1,
-                    })
-                    await page.screenshot({path: 'screenshot.png'});
-                    console.log("screenshot saved");  
+                // try{
+                const browser = await puppeteer.launch({
+                    args: [
+                        '--no-sandbox', 
+                        '--disable-setuid-sandbox'
+                    ]
+                });
+                const page = await browser.newPage();
+                await page.goto(__dirname + "/index.html");
+                await page.setViewport({
+                    width: 600,
+                    height: 400,
+                    deviceScaleFactor: 1,
+                })
+                await page.screenshot({path: 'screenshot.png'});
+                console.log("screenshot saved");  
+                
+                cloudinary.v2.uploader.upload("screenshot.png", (err, result)=> { 
                     
-                    cloudinary.v2.uploader.upload("screenshot.png", (err, result)=> { 
-                        
-                        if(err){
-                        res.send('Error :' + err);
-                        }
-                        imageUrl = result.url;
-                        console.log("Image URL created");
-                        
-                        let text = "text="+myJson.text+"&now=true&media[photo]=" + imageUrl;
-                        if(myJson.scheduled_at !== "")
-                            text += "&scheduled_at=" + myJson.scheduled_at;
-                        
-                        profile_ids.forEach(element => {
-                            text =  text + "&" + "profile_ids[]=" + element; 
-                        });
-                        
-                        let options = {
-                            method: 'post',
-                            body: text, 
-                            url: 'https://api.bufferapp.com/1/updates/create.json?access_token='+jsonBody.bufferJson.access_token,
-                            headers: {"Content-Type":"application/x-www-form-urlencoded"},
-                        }
-                        // POST call to buffer api
-                        request(options, (err, response, body)=> {
-                        if (err) {
-                            res.send('Error :'+ err);
-                        }
-                        console.log(' Body :'+ body);
-                        res.send(body);
-                        });
-                    });            
-                    await browser.close();
-                }
-                catch(error){
-                    res.status(406);
-                    return res.send(error.message);
-                }
+                    if(err){
+                    res.send('Error :' + err);
+                    }
+                    imageUrl = result.url;
+                    console.log("Image URL created");
+                    
+                    let text = "text="+myJson.text+"&now=true&media[photo]=" + imageUrl;
+                    if(myJson.scheduled_at !== "")
+                        text += "&scheduled_at=" + myJson.scheduled_at;
+                    
+                    profile_ids.forEach(element => {
+                        text =  text + "&" + "profile_ids[]=" + element; 
+                    });
+                    
+                    let options = {
+                        method: 'post',
+                        body: text, 
+                        url: 'https://api.bufferapp.com/1/updates/create.json?access_token='+jsonBody.bufferJson.access_token,
+                        headers: {"Content-Type":"application/x-www-form-urlencoded"},
+                    }
+                    // POST call to buffer api
+                    request(options, (err, response, body)=> {
+                    if (err) {
+                        res.send('Error :'+ err);
+                    }
+                    console.log(' Body :'+ body);
+                    res.send(body);
+                    });
+                });            
+                await browser.close();
+                // }
+                // catch(error){
+                //     res.status(406);
+                //     return res.send(error.message);
+                // }
             })();
         });
     });
@@ -167,6 +167,6 @@ app.get('/future-posts/:account', (req,res,next)=>{
 let server = app.listen(process.env.PORT || PORT, ()=>{
     let host = server.address().address;
     let port = server.address().port;
-    console.log("app listening at http://%s:%s", host,port);
+    console.log("app listening http://localhost:%s",port);
 })
 
