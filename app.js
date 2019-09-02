@@ -32,7 +32,7 @@
 // 
 
 
-const jsonBody = require('./config'); 
+const jsonBody = require('./configGeorge'); 
 const puppeteer = require('puppeteer');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
@@ -84,7 +84,7 @@ app.post('/schedule-post', (req, res, next) => {
         fs.writeFile('index.html', data, ()=>{
             console.log("created html File");
             (async () => {
-                // try{
+                try{
                 const browser = await puppeteer.launch({
                     args: [
                         '--no-sandbox', 
@@ -133,11 +133,11 @@ app.post('/schedule-post', (req, res, next) => {
                     });
                 });            
                 await browser.close();
-                // }
-                // catch(error){
-                //     res.status(406);
-                //     return res.send(error.message);
-                // }
+                }
+                catch(error){
+                    res.status(406);
+                    return res.send(error.message);
+                }
             })();
         });
     });
@@ -150,8 +150,7 @@ app.get('/future-posts/:account', (req,res,next)=>{
     console.log(profile);
     // res.send(req.params.account);
     let options = {
-        method: 'get',
-        // body: text, 
+        method: 'get', 
         url: "https://api.bufferapp.com/1/profiles/"+profile+"/updates/pending.json?access_token="+jsonBody.bufferJson.access_token,
         headers: {"Content-Type":"application/x-www-form-urlencoded"},
     }
