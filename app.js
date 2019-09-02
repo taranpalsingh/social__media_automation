@@ -32,7 +32,7 @@
 // 
 
 
-const jsonBody = require('./config'); 
+const jsonBody = require('./configGeorge'); 
 const puppeteer = require('puppeteer');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
