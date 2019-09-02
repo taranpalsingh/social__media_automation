@@ -49,6 +49,8 @@ app.set('view engine', 'ejs');
 
 cloudinary.config(jsonBody.cloudinaryJson);
 
+console.log("dirname: "+__dirname);
+
 app.use(bodyParser.json());
 app.use((req, res, next)=>{
     res.header("Access-Control-Allow-Headers", "*");
@@ -92,7 +94,7 @@ app.post('/schedule-post', (req, res, next) => {
                     ]
                 });
                 const page = await browser.newPage();
-                await page.goto(__dirname + "/index.html");
+                await page.goto("file://"+__dirname + "/index.html");
                 await page.setViewport({
                     width: 600,
                     height: 400,
