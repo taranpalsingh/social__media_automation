@@ -32,7 +32,7 @@
 // 
 
 
-const jsonBody = require('./configGeorge'); 
+const jsonBody = require('./config'); 
 const puppeteer = require('puppeteer');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
@@ -61,11 +61,6 @@ app.use((req, res, next)=>{
 app.get('/', (req, res, next)=> {
     res.send("Welcome to loopcv");
 })
-
-app.get('/test', (req, res, next)=> {
-    res.send("Welcome to loopcv test");
-})
-
 
 app.post('/schedule-post', (req, res, next) => {
 

@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <title>social media post</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="main.css">
 </head>
@@ -14,22 +15,26 @@ body{
   font-family:<%= font_family%>;  
 }
 </style>
-<!-- <body  style="font-family:<%= backgroundImage%>"> -->
 <body>
-  <img src="<%= backgroundImage%>" alt="background Image" class="img">
+  <img src="<%= backgroundImage%>" alt="background Image" class="bgImg">
    <div class="parent">
-    <div class="line">
-      <h1>Company :</h1>
-      <h1><%= companyName%></h1>
+    <div class="line mt-4">
+      <i class="fa fa-suitcase my-2 mx-3"></i>
+      <h2>Company:</h2>
+      <h2><%= companyName%></h2>
     </div> 
     <div class="line">
-      <h1>Job Title :</h1>
-      <h1><%= jobtitle%></h1>
+      <i class="fa fa-building my-2 mx-3"></i>
+      <h2>Job Title:</h2>
+      <h2><%= jobtitle%></h2>
     </div> 
     <div class="line">
-      <h1>Location :</h1>
-      <h1><%= location%></h1>
+      <i class="fa fa-map-marker my-2 mx-3"></i>
+      <h2>Location:</h2>
+      <h2><%= location%></h2>
     </div> 
+    <h2 class="text-center">www.loopcv.pro</h2>
+    <img src="loop.svg" class="img brandLogo" alt="">
   </div> 
 </body>
 

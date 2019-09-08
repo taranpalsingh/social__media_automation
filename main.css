@@ -1,31 +1,69 @@
-body{
-  width: 600px;
+*{
+  margin: 0;
+  padding: 0;
+  font-family: comic sans ms;
 }
 
-h1{
-  color: white;
-  font-size: 1.75rem;
-  margin: 10px;
+body{
+  width: 600px;
+  height: 400px;
+  position: relative;
 }
+
+i{
+  position: relative;
+  top: 18px;
+}
+
+h2{
+  text-transform: uppercase;
+  font-weight: 800 !important;
+  font-size: 1.2rem;
+  margin: 10px 10px 10px 0;
+  line-height: 2.5;
+}
+
+/* .line > h2{
+  line-height: 0.5;
+} */
 
 .line{
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin: 20px;
 }
 
-img{
-  width: 600px;
-  height: 400px;
+.bgImg{  
+  height: 100%;
+  width : 100%;
   z-index: -1;
   position: absolute;
 }
 
 .parent{
-  padding: 40px;  
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background-color: #FFD54F;
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  opacity: 0.85;
+  border-radius: 15px;
+  /* border: 2px solid black; */
+  /* border-width: 10px;
+  border-style: double; */
+  background-color: white;
+}
+
+
+.brandLogo{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  right: -25px;
+  bottom: -25px;
 }
